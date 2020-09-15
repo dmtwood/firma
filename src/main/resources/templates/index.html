@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="nl"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org">
+
+<head>
+    <title> Startpagina </title>
+    <link rel="stylesheet" th:href="@{/css/firma.css}">
+</head>
+
+
+<body>
+
+<h1> Welkom op de startpagina van de Firma. </h1>
+
+<ul>
+    <li sec:authorize-url="/geluk">
+        <a th:href="@{/geluk}"> Gelukspagina </a>
+    </li>
+
+    <!-- shown only when user is not logged in -->
+    <li sec:authorize="isAnonymous()">
+        <a th:href="@{/login}"> Log in </a>
+    </li>
+
+    <!-- shown only when user is logged in -->
+    <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
+        <button>
+            <span sec:authorization="name"> uitloggen </span>
+        </button>
+    </form>
+</ul>
+</body>
+
+</html>

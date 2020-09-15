@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="nl"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org">
+
+<head>
+    <title> Login pagina -</title>
+    <link rel="stylesheet" th:href="@{/css/firma.css}">
+</head>
+
+<body>
+
+    <h1> Login </h1>
+    <form th:action="@{/login}" method="post">
+        <input name="username" required autofocus placeholder="gebruikersnaam">
+        <input name="password" required placeholder="paswoord">
+        <button> <span sec:authorization="name"> inloggen </span> </button>
+    </form>
+
+<div th:if="${param.error}"> Foute ingave, probeer opnieuw. </div>
+</body>
+</html>
